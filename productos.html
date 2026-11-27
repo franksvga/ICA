@@ -6,32 +6,28 @@
     <title>Productos | ICA Ingeniería Hidráulica</title>
     <meta
       name="description"
-      content="Catálogo técnico de equipamiento y sistemas hidráulicos: bombeo, válvulas, filtración, plantas PTAP y telemetría SCADA."
+      content="Catálogo técnico de equipos y sistemas hidráulicos modulares para conducción, control y tratamiento de agua."
     />
+    <meta property="og:title" content="Productos | ICA Ingeniería Hidráulica" />
+    <meta
+      property="og:description"
+      content="Catálogo técnico de equipos y sistemas hidráulicos modulares para conducción, control y tratamiento de agua."
+    />
+    <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div id="root">
       <div class="app-shell">
         <header class="site-header">
-          <input
-            type="checkbox"
-            id="nav-toggle"
-            class="nav-toggle-input"
-            aria-hidden="true"
-          />
           <div class="container navbar-inner">
-            <a
-              href="index.html"
-              class="brand-btn"
-              aria-label="Ir al inicio — ICA Ingeniería Hidráulica"
-            >
+            <a href="index.html" class="brand-btn" aria-label="Ir al inicio — ICA Ingeniería Hidráulica">
               <img
                 src="/assets/aistudio/logo_a69eadc6.png"
                 alt="Logo ICA Ingeniería Hidráulica"
@@ -73,21 +69,17 @@
                 </a>
               </div>
 
-              <label for="nav-toggle" class="mobile-menu-btn" aria-label="Abrir o cerrar menú">
-                <svg class="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <button type="button" id="mobile-menu-toggle" class="mobile-menu-btn" aria-expanded="false" aria-label="Abrir menú">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="4" x2="20" y1="12" y2="12"></line>
                   <line x1="4" x2="20" y1="6" y2="6"></line>
                   <line x1="4" x2="20" y1="18" y2="18"></line>
                 </svg>
-                <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M18 6 6 18"></path>
-                  <path d="m6 6 12 12"></path>
-                </svg>
-              </label>
+              </button>
             </div>
           </div>
 
-          <div class="mobile-drawer">
+          <div id="mobile-drawer" class="mobile-drawer" hidden>
             <nav aria-label="Menú móvil" class="mobile-nav">
               <a href="index.html" class="mobile-nav-btn">Inicio</a>
               <a href="productos.html" class="mobile-nav-btn is-active" aria-current="page">Productos</a>
@@ -127,10 +119,11 @@
             <section class="page-hero">
               <div class="cover-backdrop">
                 <img
-                  src="/src/assets/images/products_equipment_cover_1795737285623.jpg"
+                  src="/assets/images/products_equipment_cover_1795737285623.jpg"
                   alt="Estación de bombeo hidráulico con tuberías de acero inoxidable y válvulas de control"
                   referrerpolicy="no-referrer"
                   class="cover-img"
+                  data-fallback-label="Catálogo Técnico de Equipos Hidráulicos"
                 />
                 <div aria-hidden="true" class="page-hero-scrim"></div>
               </div>
@@ -151,26 +144,20 @@
               </div>
             </section>
 
-            <!-- Products grid with pure CSS radio category filters -->
+            <!-- Products grid with integrated category filters -->
             <section class="products-section">
               <div class="container">
-                <input type="radio" name="product-filter" id="filter-todos" class="filter-radio" checked />
-                <input type="radio" name="product-filter" id="filter-bombeo" class="filter-radio" />
-                <input type="radio" name="product-filter" id="filter-valvulas" class="filter-radio" />
-                <input type="radio" name="product-filter" id="filter-tratamiento" class="filter-radio" />
-                <input type="radio" name="product-filter" id="filter-telemetria" class="filter-radio" />
-
                 <div role="tablist" aria-label="Filtrar productos por categoría" class="filter-tablist">
-                  <label for="filter-todos" class="filter-tab">Todos</label>
-                  <label for="filter-bombeo" class="filter-tab">Bombeo y Presión</label>
-                  <label for="filter-valvulas" class="filter-tab">Válvulas y Control</label>
-                  <label for="filter-tratamiento" class="filter-tab">Tratamiento y Filtración</label>
-                  <label for="filter-telemetria" class="filter-tab">Medición y Telemetría</label>
+                  <button role="tab" type="button" aria-selected="true" class="filter-tab is-active" data-filter="todos">Todos</button>
+                  <button role="tab" type="button" aria-selected="false" class="filter-tab" data-filter="bombeo">Bombeo y Presión</button>
+                  <button role="tab" type="button" aria-selected="false" class="filter-tab" data-filter="valvulas">Válvulas y Control</button>
+                  <button role="tab" type="button" aria-selected="false" class="filter-tab" data-filter="tratamiento">Tratamiento y Filtración</button>
+                  <button role="tab" type="button" aria-selected="false" class="filter-tab" data-filter="telemetria">Medición y Telemetría</button>
                 </div>
 
-                <div class="products-grid">
-                  <!-- Product 1: Bombeo -->
-                  <article class="product-card" data-cat="bombeo">
+                <div id="products-grid" class="products-grid">
+                  <!-- 1: Grupos de Bombeo -->
+                  <article class="product-card" data-category="bombeo">
                     <div>
                       <div class="schematic-box">
                         <svg viewBox="0 0 240 130" class="schematic-svg" aria-hidden="true">
@@ -198,35 +185,23 @@
                           con variadores de frecuencia integrados para operación continua.
                         </p>
                         <dl class="product-specs-dl">
-                          <div class="spec-row">
-                            <dt>Capacidad / Rango</dt>
-                            <dd>20 – 1,200 L/s</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Presión / Carga</dt>
-                            <dd>ADT hasta 240 m</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Normativa</dt>
-                            <dd>ISO 9906 Grado 1 / HI 9.6</dd>
-                          </div>
+                          <div class="spec-row"><dt>Capacidad / Rango</dt><dd>20 – 1,200 L/s</dd></div>
+                          <div class="spec-row"><dt>Presión / Carga</dt><dd>ADT hasta 240 m</dd></div>
+                          <div class="spec-row"><dt>Normativa</dt><dd>ISO 9906 Grado 1 / HI 9.6</dd></div>
                         </dl>
                       </div>
                     </div>
                     <div class="product-footer">
-                      <a href="#modal-grupos-bombeo" class="btn-ghost-dark">Especificaciones</a>
-                      <a href="contacto.html" class="text-link-btn">
+                      <button type="button" class="btn-ghost-dark" data-product-modal="grupos-bombeo">Especificaciones</button>
+                      <a href="contacto.html?asunto=Cotizaci%C3%B3n%20de%20producto%3A%20Grupos%20de%20Bombeo%20Centr%C3%ADfugo%20Multietapa%20(ICA-BP-400)" class="text-link-btn">
                         Cotizar
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                       </a>
                     </div>
                   </article>
 
-                  <!-- Product 2: Válvulas -->
-                  <article class="product-card" data-cat="valvulas">
+                  <!-- 2: Válvulas Reguladoras -->
+                  <article class="product-card" data-category="valvulas">
                     <div>
                       <div class="schematic-box">
                         <svg viewBox="0 0 240 130" class="schematic-svg" aria-hidden="true">
@@ -248,40 +223,27 @@
                         </div>
                         <h2 class="product-name">Válvulas Reguladoras y Anticipadoras de Ariete</h2>
                         <p class="product-summary">
-                          Válvulas hidráulicas de diafragma y émbolo para regulación precisa de
-                          presión, control de caudal y protección contra transientes en líneas de
-                          impulsión.
+                          Válvulas hidráulicas de diafragma y émbolo para regulación precisa de presión,
+                          control de caudal y protección contra transientes en líneas de impulsión.
                         </p>
                         <dl class="product-specs-dl">
-                          <div class="spec-row">
-                            <dt>Capacidad / Rango</dt>
-                            <dd>DN 80 – 1,200 mm</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Presión / Carga</dt>
-                            <dd>PN 16 / PN 25 / PN 40</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Normativa</dt>
-                            <dd>EN 1074 / AWWA C530</dd>
-                          </div>
+                          <div class="spec-row"><dt>Capacidad / Rango</dt><dd>DN 80 – 1,200 mm</dd></div>
+                          <div class="spec-row"><dt>Presión / Carga</dt><dd>PN 16 / PN 25 / PN 40</dd></div>
+                          <div class="spec-row"><dt>Normativa</dt><dd>EN 1074 / AWWA C530</dd></div>
                         </dl>
                       </div>
                     </div>
                     <div class="product-footer">
-                      <a href="#modal-valvulas-control" class="btn-ghost-dark">Especificaciones</a>
-                      <a href="contacto.html" class="text-link-btn">
+                      <button type="button" class="btn-ghost-dark" data-product-modal="valvulas-control">Especificaciones</button>
+                      <a href="contacto.html?asunto=Cotizaci%C3%B3n%20de%20producto%3A%20V%C3%A1lvulas%20Reguladoras%20y%20Anticipadoras%20de%20Ariete%20(ICA-VC-250)" class="text-link-btn">
                         Cotizar
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                       </a>
                     </div>
                   </article>
 
-                  <!-- Product 3: Tratamiento (PTAP) -->
-                  <article class="product-card" data-cat="tratamiento">
+                  <!-- 3: Plantas Modulares PTAP -->
+                  <article class="product-card" data-category="tratamiento">
                     <div>
                       <div class="schematic-box">
                         <svg viewBox="0 0 240 130" class="schematic-svg" aria-hidden="true">
@@ -303,40 +265,27 @@
                         </div>
                         <h2 class="product-name">Plantas Modulares de Potabilización (PTAP)</h2>
                         <p class="product-summary">
-                          Sistemas prefabricados en skid de acero al carbono protegido o acero
-                          inoxidable con procesos de coagulación, sedimentación laminar y filtración
-                          rápida.
+                          Sistemas prefabricados en skid de acero al carbono protegido o acero inoxidable
+                          con procesos de coagulación, sedimentación laminar y filtración rápida.
                         </p>
                         <dl class="product-specs-dl">
-                          <div class="spec-row">
-                            <dt>Capacidad / Rango</dt>
-                            <dd>5 – 150 L/s por módulo</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Presión / Carga</dt>
-                            <dd>Turbiedad de ingreso hasta 1,500 NTU</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Normativa</dt>
-                            <dd>Norma OS.020 / OMS Agua Segura</dd>
-                          </div>
+                          <div class="spec-row"><dt>Capacidad / Rango</dt><dd>5 – 150 L/s por módulo</dd></div>
+                          <div class="spec-row"><dt>Presión / Carga</dt><dd>Turbiedad de ingreso hasta 1,500 NTU</dd></div>
+                          <div class="spec-row"><dt>Normativa</dt><dd>Norma OS.020 / OMS Agua Segura</dd></div>
                         </dl>
                       </div>
                     </div>
                     <div class="product-footer">
-                      <a href="#modal-plantas-compactas" class="btn-ghost-dark">Especificaciones</a>
-                      <a href="contacto.html" class="text-link-btn">
+                      <button type="button" class="btn-ghost-dark" data-product-modal="plantas-compactas">Especificaciones</button>
+                      <a href="contacto.html?asunto=Cotizaci%C3%B3n%20de%20producto%3A%20Plantas%20Modulares%20de%20Potabilizaci%C3%B3n%20(PTAP)%20(ICA-PT-150)" class="text-link-btn">
                         Cotizar
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                       </a>
                     </div>
                   </article>
 
-                  <!-- Product 4: Tratamiento (Filtros) -->
-                  <article class="product-card" data-cat="tratamiento">
+                  <!-- 4: Filtros Automáticos -->
+                  <article class="product-card" data-category="tratamiento">
                     <div>
                       <div class="schematic-box">
                         <svg viewBox="0 0 240 130" class="schematic-svg" aria-hidden="true">
@@ -362,35 +311,23 @@
                           continua de sólidos suspendidos sin interrumpir el caudal de servicio.
                         </p>
                         <dl class="product-specs-dl">
-                          <div class="spec-row">
-                            <dt>Capacidad / Rango</dt>
-                            <dd>15 – 850 m³/h</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Presión / Carga</dt>
-                            <dd>Grado 20 – 200 micras · PN 10</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Normativa</dt>
-                            <dd>ASME Sec. VIII / ISO 9001</dd>
-                          </div>
+                          <div class="spec-row"><dt>Capacidad / Rango</dt><dd>15 – 850 m³/h</dd></div>
+                          <div class="spec-row"><dt>Presión / Carga</dt><dd>Grado 20 – 200 micras · PN 10</dd></div>
+                          <div class="spec-row"><dt>Normativa</dt><dd>ASME Sec. VIII / ISO 9001</dd></div>
                         </dl>
                       </div>
                     </div>
                     <div class="product-footer">
-                      <a href="#modal-filtracion-automatica" class="btn-ghost-dark">Especificaciones</a>
-                      <a href="contacto.html" class="text-link-btn">
+                      <button type="button" class="btn-ghost-dark" data-product-modal="filtracion-automatica">Especificaciones</button>
+                      <a href="contacto.html?asunto=Cotizaci%C3%B3n%20de%20producto%3A%20Filtros%20Autom%C3%A1ticos%20de%20Malla%20y%20Anillas%20(ICA-TF-200)" class="text-link-btn">
                         Cotizar
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                       </a>
                     </div>
                   </article>
 
-                  <!-- Product 5: Telemetría -->
-                  <article class="product-card" data-cat="telemetria">
+                  <!-- 5: Caudalímetros y SCADA -->
+                  <article class="product-card" data-category="telemetria">
                     <div>
                       <div class="schematic-box">
                         <svg viewBox="0 0 240 130" class="schematic-svg" aria-hidden="true">
@@ -413,35 +350,23 @@
                           transmisión remota vía Modbus, LoRaWAN o red celular.
                         </p>
                         <dl class="product-specs-dl">
-                          <div class="spec-row">
-                            <dt>Capacidad / Rango</dt>
-                            <dd>DN 25 – 2,000 mm</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Presión / Carga</dt>
-                            <dd>Precisión ±0.2 % · IP68 sumergible</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Normativa</dt>
-                            <dd>OIML R49 / ISO 4064</dd>
-                          </div>
+                          <div class="spec-row"><dt>Capacidad / Rango</dt><dd>DN 25 – 2,000 mm</dd></div>
+                          <div class="spec-row"><dt>Presión / Carga</dt><dd>Precisión ±0.2 % · IP68 sumergible</dd></div>
+                          <div class="spec-row"><dt>Normativa</dt><dd>OIML R49 / ISO 4064</dd></div>
                         </dl>
                       </div>
                     </div>
                     <div class="product-footer">
-                      <a href="#modal-caudalimetros-scada" class="btn-ghost-dark">Especificaciones</a>
-                      <a href="contacto.html" class="text-link-btn">
+                      <button type="button" class="btn-ghost-dark" data-product-modal="caudalimetros-scada">Especificaciones</button>
+                      <a href="contacto.html?asunto=Cotizaci%C3%B3n%20de%20producto%3A%20Caudal%C3%ADmetros%20Electromagn%C3%A9ticos%20y%20Estaciones%20SCADA%20(ICA-TM-100)" class="text-link-btn">
                         Cotizar
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                       </a>
                     </div>
                   </article>
 
-                  <!-- Product 6: Válvulas / Compuertas -->
-                  <article class="product-card" data-cat="valvulas">
+                  <!-- 6: Compuertas Murales -->
+                  <article class="product-card" data-category="valvulas">
                     <div>
                       <div class="schematic-box">
                         <svg viewBox="0 0 240 130" class="schematic-svg" aria-hidden="true">
@@ -467,29 +392,17 @@
                           cámaras de carga, bocatomas y plantas de tratamiento.
                         </p>
                         <dl class="product-specs-dl">
-                          <div class="spec-row">
-                            <dt>Capacidad / Rango</dt>
-                            <dd>Ancho 0.40 – 4.50 m</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Presión / Carga</dt>
-                            <dd>Carga hidráulica hasta 12 m.c.a.</dd>
-                          </div>
-                          <div class="spec-row">
-                            <dt>Normativa</dt>
-                            <dd>AWWA C561 / DIN 19569</dd>
-                          </div>
+                          <div class="spec-row"><dt>Capacidad / Rango</dt><dd>Ancho 0.40 – 4.50 m</dd></div>
+                          <div class="spec-row"><dt>Presión / Carga</dt><dd>Carga hidráulica hasta 12 m.c.a.</dd></div>
+                          <div class="spec-row"><dt>Normativa</dt><dd>AWWA C561 / DIN 19569</dd></div>
                         </dl>
                       </div>
                     </div>
                     <div class="product-footer">
-                      <a href="#modal-compuertas-hidromecanicas" class="btn-ghost-dark">Especificaciones</a>
-                      <a href="contacto.html" class="text-link-btn">
+                      <button type="button" class="btn-ghost-dark" data-product-modal="compuertas-hidromecanicas">Especificaciones</button>
+                      <a href="contacto.html?asunto=Cotizaci%C3%B3n%20de%20producto%3A%20Compuertas%20Murales%20y%20Vertederos%20Hidromec%C3%A1nicos%20(ICA-CH-300)" class="text-link-btn">
                         Cotizar
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                       </a>
                     </div>
                   </article>
@@ -497,246 +410,7 @@
               </div>
             </section>
 
-            <!-- Pure CSS :target Modals -->
-            <div id="modal-grupos-bombeo" role="dialog" aria-modal="true" aria-labelledby="title-grupos-bombeo" class="modal-backdrop">
-              <a href="#" class="modal-backdrop-dismiss" aria-label="Cerrar ventana"></a>
-              <div class="modal-panel">
-                <div class="modal-header">
-                  <div>
-                    <div class="modal-meta">
-                      <span class="product-cat">Bombeo y Presión</span>
-                      <span aria-hidden="true">·</span>
-                      <span class="font-mono">ICA-BP-400</span>
-                    </div>
-                    <h3 id="title-grupos-bombeo" class="modal-title">Grupos de Bombeo Centrífugo Multietapa</h3>
-                  </div>
-                  <a href="#" class="modal-close-btn" aria-label="Cerrar especificaciones">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                  </a>
-                </div>
-                <div class="modal-body">
-                  <p class="card-summary">Conjuntos motobomba horizontales y verticales de alta eficiencia hidráulica con variadores de frecuencia integrados para operación continua.</p>
-                  <div class="modal-specs-box">
-                    <div><div class="modal-spec-label">Capacidad / Rango</div><div class="modal-spec-value font-mono">20 – 1,200 L/s</div></div>
-                    <div><div class="modal-spec-label">Presión / Carga de Trabajo</div><div class="modal-spec-value font-mono">ADT hasta 240 m</div></div>
-                    <div><div class="modal-spec-label">Materiales Constructivos</div><div class="modal-spec-value">Acero Inoxidable AISI 316 / Hierro Dúctil</div></div>
-                    <div><div class="modal-spec-label">Normativa Aplicable</div><div class="modal-spec-value font-mono">ISO 9906 Grado 1 / HI 9.6</div></div>
-                  </div>
-                  <div>
-                    <h4 class="modal-list-heading">Aplicaciones Principales</h4>
-                    <ul class="modal-check-list">
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Estaciones impulsoras de agua potable municipal</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Sistemas de presurización industrial y minera</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Estaciones de rebombeo para riego tecnificado</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <a href="#" class="btn-modal-close">Cerrar</a>
-                  <a href="contacto.html" class="btn-primary-blue">Cotizar este producto</a>
-                </div>
-              </div>
-            </div>
-
-            <div id="modal-valvulas-control" role="dialog" aria-modal="true" aria-labelledby="title-valvulas-control" class="modal-backdrop">
-              <a href="#" class="modal-backdrop-dismiss" aria-label="Cerrar ventana"></a>
-              <div class="modal-panel">
-                <div class="modal-header">
-                  <div>
-                    <div class="modal-meta">
-                      <span class="product-cat">Válvulas y Control</span>
-                      <span aria-hidden="true">·</span>
-                      <span class="font-mono">ICA-VC-250</span>
-                    </div>
-                    <h3 id="title-valvulas-control" class="modal-title">Válvulas Reguladoras y Anticipadoras de Ariete</h3>
-                  </div>
-                  <a href="#" class="modal-close-btn" aria-label="Cerrar especificaciones">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                  </a>
-                </div>
-                <div class="modal-body">
-                  <p class="card-summary">Válvulas hidráulicas de diafragma y émbolo para regulación precisa de presión, control de caudal y protección contra transientes en líneas de impulsión.</p>
-                  <div class="modal-specs-box">
-                    <div><div class="modal-spec-label">Capacidad / Rango</div><div class="modal-spec-value font-mono">DN 80 – 1,200 mm</div></div>
-                    <div><div class="modal-spec-label">Presión / Carga de Trabajo</div><div class="modal-spec-value font-mono">PN 16 / PN 25 / PN 40</div></div>
-                    <div><div class="modal-spec-label">Materiales Constructivos</div><div class="modal-spec-value">Hierro dúctil GGG50 con recubrimiento epóxico</div></div>
-                    <div><div class="modal-spec-label">Normativa Aplicable</div><div class="modal-spec-value font-mono">EN 1074 / AWWA C530</div></div>
-                  </div>
-                  <div>
-                    <h4 class="modal-list-heading">Aplicaciones Principales</h4>
-                    <ul class="modal-check-list">
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Sectorización y manejo activo de presiones en redes</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Protección de tuberías matrices ante paradas súbitas</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Control de nivel en reservorios de cabecera</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <a href="#" class="btn-modal-close">Cerrar</a>
-                  <a href="contacto.html" class="btn-primary-blue">Cotizar este producto</a>
-                </div>
-              </div>
-            </div>
-
-            <div id="modal-plantas-compactas" role="dialog" aria-modal="true" aria-labelledby="title-plantas-compactas" class="modal-backdrop">
-              <a href="#" class="modal-backdrop-dismiss" aria-label="Cerrar ventana"></a>
-              <div class="modal-panel">
-                <div class="modal-header">
-                  <div>
-                    <div class="modal-meta">
-                      <span class="product-cat">Tratamiento y Filtración</span>
-                      <span aria-hidden="true">·</span>
-                      <span class="font-mono">ICA-PT-150</span>
-                    </div>
-                    <h3 id="title-plantas-compactas" class="modal-title">Plantas Modulares de Potabilización (PTAP)</h3>
-                  </div>
-                  <a href="#" class="modal-close-btn" aria-label="Cerrar especificaciones">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                  </a>
-                </div>
-                <div class="modal-body">
-                  <p class="card-summary">Sistemas prefabricados en skid de acero al carbono protegido o acero inoxidable con procesos de coagulación, sedimentación laminar y filtración rápida.</p>
-                  <div class="modal-specs-box">
-                    <div><div class="modal-spec-label">Capacidad / Rango</div><div class="modal-spec-value font-mono">5 – 150 L/s por módulo</div></div>
-                    <div><div class="modal-spec-label">Presión / Carga de Trabajo</div><div class="modal-spec-value font-mono">Turbiedad de ingreso hasta 1,500 NTU</div></div>
-                    <div><div class="modal-spec-label">Materiales Constructivos</div><div class="modal-spec-value">Acero A36 epóxico / Inox AISI 304L</div></div>
-                    <div><div class="modal-spec-label">Normativa Aplicable</div><div class="modal-spec-value font-mono">Norma OS.020 / OMS Agua Segura</div></div>
-                  </div>
-                  <div>
-                    <h4 class="modal-list-heading">Aplicaciones Principales</h4>
-                    <ul class="modal-check-list">
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Abastecimiento para localidades y campamentos</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Ampliación rápida de capacidad en plantas municipales</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Tratamiento de agua de proceso industrial</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <a href="#" class="btn-modal-close">Cerrar</a>
-                  <a href="contacto.html" class="btn-primary-blue">Cotizar este producto</a>
-                </div>
-              </div>
-            </div>
-
-            <div id="modal-filtracion-automatica" role="dialog" aria-modal="true" aria-labelledby="title-filtracion-automatica" class="modal-backdrop">
-              <a href="#" class="modal-backdrop-dismiss" aria-label="Cerrar ventana"></a>
-              <div class="modal-panel">
-                <div class="modal-header">
-                  <div>
-                    <div class="modal-meta">
-                      <span class="product-cat">Tratamiento y Filtración</span>
-                      <span aria-hidden="true">·</span>
-                      <span class="font-mono">ICA-TF-200</span>
-                    </div>
-                    <h3 id="title-filtracion-automatica" class="modal-title">Filtros Automáticos de Malla y Anillas</h3>
-                  </div>
-                  <a href="#" class="modal-close-btn" aria-label="Cerrar especificaciones">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                  </a>
-                </div>
-                <div class="modal-body">
-                  <p class="card-summary">Equipos autolimpiantes por diferencial de presión que aseguran retención continua de sólidos suspendidos sin interrumpir el caudal de servicio.</p>
-                  <div class="modal-specs-box">
-                    <div><div class="modal-spec-label">Capacidad / Rango</div><div class="modal-spec-value font-mono">15 – 850 m³/h</div></div>
-                    <div><div class="modal-spec-label">Presión / Carga de Trabajo</div><div class="modal-spec-value font-mono">Grado 20 – 200 micras · PN 10</div></div>
-                    <div><div class="modal-spec-label">Materiales Constructivos</div><div class="modal-spec-value">Acero Inox 316L / Poliamida reforzada</div></div>
-                    <div><div class="modal-spec-label">Normativa Aplicable</div><div class="modal-spec-value font-mono">ASME Sec. VIII / ISO 9001</div></div>
-                  </div>
-                  <div>
-                    <h4 class="modal-list-heading">Aplicaciones Principales</h4>
-                    <ul class="modal-check-list">
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Pretratamiento para ósmosis inversa y ultrafiltración</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Protección de emisores en sistemas agrícolas</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Circuito cerrado de enfriamiento industrial</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <a href="#" class="btn-modal-close">Cerrar</a>
-                  <a href="contacto.html" class="btn-primary-blue">Cotizar este producto</a>
-                </div>
-              </div>
-            </div>
-
-            <div id="modal-caudalimetros-scada" role="dialog" aria-modal="true" aria-labelledby="title-caudalimetros-scada" class="modal-backdrop">
-              <a href="#" class="modal-backdrop-dismiss" aria-label="Cerrar ventana"></a>
-              <div class="modal-panel">
-                <div class="modal-header">
-                  <div>
-                    <div class="modal-meta">
-                      <span class="product-cat">Medición y Telemetría</span>
-                      <span aria-hidden="true">·</span>
-                      <span class="font-mono">ICA-TM-100</span>
-                    </div>
-                    <h3 id="title-caudalimetros-scada" class="modal-title">Caudalímetros Electromagnéticos y Estaciones SCADA</h3>
-                  </div>
-                  <a href="#" class="modal-close-btn" aria-label="Cerrar especificaciones">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                  </a>
-                </div>
-                <div class="modal-body">
-                  <p class="card-summary">Instrumentación de alta exactitud para macromedición en tiempo real, con transmisión remota vía Modbus, LoRaWAN o red celular.</p>
-                  <div class="modal-specs-box">
-                    <div><div class="modal-spec-label">Capacidad / Rango</div><div class="modal-spec-value font-mono">DN 25 – 2,000 mm</div></div>
-                    <div><div class="modal-spec-label">Presión / Carga de Trabajo</div><div class="modal-spec-value font-mono">Precisión ±0.2 % · IP68 sumergible</div></div>
-                    <div><div class="modal-spec-label">Materiales Constructivos</div><div class="modal-spec-value">Revestimiento PTFE / Ebonita · Electrodos Hastelloy</div></div>
-                    <div><div class="modal-spec-label">Normativa Aplicable</div><div class="modal-spec-value font-mono">OIML R49 / ISO 4064</div></div>
-                  </div>
-                  <div>
-                    <h4 class="modal-list-heading">Aplicaciones Principales</h4>
-                    <ul class="modal-check-list">
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Macromedición de sectores hidrométricos y balance hídrico</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Detección temprana de fugas nocturnas en redes</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Control volumétrico en bocatomas y plantas</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <a href="#" class="btn-modal-close">Cerrar</a>
-                  <a href="contacto.html" class="btn-primary-blue">Cotizar este producto</a>
-                </div>
-              </div>
-            </div>
-
-            <div id="modal-compuertas-hidromecanicas" role="dialog" aria-modal="true" aria-labelledby="title-compuertas-hidromecanicas" class="modal-backdrop">
-              <a href="#" class="modal-backdrop-dismiss" aria-label="Cerrar ventana"></a>
-              <div class="modal-panel">
-                <div class="modal-header">
-                  <div>
-                    <div class="modal-meta">
-                      <span class="product-cat">Válvulas y Control</span>
-                      <span aria-hidden="true">·</span>
-                      <span class="font-mono">ICA-CH-300</span>
-                    </div>
-                    <h3 id="title-compuertas-hidromecanicas" class="modal-title">Compuertas Murales y Vertederos Hidromecánicos</h3>
-                  </div>
-                  <a href="#" class="modal-close-btn" aria-label="Cerrar especificaciones">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                  </a>
-                </div>
-                <div class="modal-body">
-                  <p class="card-summary">Estructuras de regulación y aislamiento fabricadas a medida para canales, cámaras de carga, bocatomas y plantas de tratamiento.</p>
-                  <div class="modal-specs-box">
-                    <div><div class="modal-spec-label">Capacidad / Rango</div><div class="modal-spec-value font-mono">Ancho 0.40 – 4.50 m</div></div>
-                    <div><div class="modal-spec-label">Presión / Carga de Trabajo</div><div class="modal-spec-value font-mono">Carga hidráulica hasta 12 m.c.a.</div></div>
-                    <div><div class="modal-spec-label">Materiales Constructivos</div><div class="modal-spec-value">Acero Inoxidable AISI 304L / 316L · Sellos EPDM</div></div>
-                    <div><div class="modal-spec-label">Normativa Aplicable</div><div class="modal-spec-value font-mono">AWWA C561 / DIN 19569</div></div>
-                  </div>
-                  <div>
-                    <h4 class="modal-list-heading">Aplicaciones Principales</h4>
-                    <ul class="modal-check-list">
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Obras de captación y bocatomas fluviales</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Canales de conducción y aliviaderos regulados</span></li>
-                      <li class="modal-check-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FA22A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>Aislamiento de cámaras de rejas y desarenadores</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <a href="#" class="btn-modal-close">Cerrar</a>
-                  <a href="contacto.html" class="btn-primary-blue">Cotizar este producto</a>
-                </div>
-              </div>
-            </div>
+            <div id="product-modal-root"></div>
           </div>
         </main>
 
@@ -744,11 +418,7 @@
           <div class="container">
             <div class="footer-top">
               <div class="footer-brand">
-                <a
-                  href="index.html"
-                  class="footer-logo-btn"
-                  aria-label="Ir al inicio — ICA Ingeniería Hidráulica"
-                >
+                <a href="index.html" class="footer-logo-btn" aria-label="Ir al inicio — ICA Ingeniería Hidráulica">
                   <img
                     src="/assets/aistudio/logo_a69eadc6.png"
                     alt="Logo ICA Ingeniería Hidráulica"
@@ -771,12 +441,14 @@
             </div>
 
             <div class="footer-bottom">
-              <p>© 2026 ICA Ingeniería Hidráulica S.A.C. Todos los derechos reservados.</p>
+              <p>© <span id="footer-year">2026</span> ICA Ingeniería Hidráulica S.A.C. Todos los derechos reservados.</p>
               <p>Gestión de Calidad ISO 9001 · Ingeniería Civil e Hidráulica</p>
             </div>
           </div>
         </footer>
       </div>
     </div>
+
+    <script type="module" src="./script.js"></script>
   </body>
 </html>

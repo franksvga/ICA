@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
+    "build": "rm -rf dist && mkdir -p dist && cp -r public/* dist/ && cp index.html productos.html proyectos.html contacto.html style.css script.js dist/",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "node --check script.js"
