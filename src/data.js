@@ -1,90 +1,11 @@
-export type ServiceCategory = 'todos' | 'abastecimiento' | 'drenaje' | 'estructuras';
-export type ProductCategory =
-  | 'todos'
-  | 'bombeo'
-  | 'valvulas'
-  | 'tratamiento'
-  | 'telemetria';
-export type ProjectCategory = 'todos' | 'Abastecimiento' | 'Drenaje' | 'Estructuras';
+export const NAV_ITEMS = [
+  { id: 'inicio', label: 'Inicio' },
+  { id: 'productos', label: 'Productos' },
+  { id: 'proyectos', label: 'Proyectos' },
+  { id: 'contacto', label: 'Contacto' },
+];
 
-export interface HeroMetric {
-  value: string;
-  label: string;
-  detail: string;
-}
-
-export interface HydraulicService {
-  id: string;
-  index: string;
-  category: Exclude<ServiceCategory, 'todos'>;
-  categoryLabel: string;
-  title: string;
-  summary: string;
-  featured?: boolean;
-  deliverables: string[];
-  norms: string;
-  typicalCapacity: string;
-}
-
-export interface HydraulicProduct {
-  id: string;
-  code: string;
-  category: Exclude<ProductCategory, 'todos'>;
-  categoryLabel: string;
-  name: string;
-  summary: string;
-  schematicType: 'pump' | 'valve' | 'plant' | 'filter' | 'meter' | 'gate';
-  specs: {
-    capacity: string;
-    pressureOrHead: string;
-    material: string;
-    standard: string;
-  };
-  applications: string[];
-}
-
-export interface HydraulicProject {
-  id: string;
-  title: string;
-  location: string;
-  year: string;
-  category: Exclude<ProjectCategory, 'todos'>;
-  imageSrc: string;
-  imageAlt: string;
-  highlightMetric: string;
-  highlightContext: string;
-  summary: string;
-  specs: {
-    designFlow: string;
-    standard: string;
-    duration: string;
-    sustainability: string;
-  };
-  scopeDetails: string[];
-}
-
-export interface MethodologyStep {
-  index: string;
-  title: string;
-  description: string;
-  output: string;
-}
-
-export interface CompanyPillar {
-  index: string;
-  title: string;
-  description: string;
-}
-
-export interface ProductCategoryHighlight {
-  id: string;
-  title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
-}
-
-export const PRODUCT_CATEGORIES: ProductCategoryHighlight[] = [
+export const PRODUCT_CATEGORIES = [
   {
     id: 'tanques-vitrificados',
     title: 'Tanques Vitrificados',
@@ -115,7 +36,8 @@ export const PRODUCT_CATEGORIES: ProductCategoryHighlight[] = [
     description:
       'Soluciones integrales para depuración biológica y físico-química de efluentes municipales e industriales, orientadas al reúso responsable del agua.',
     imageSrc: '/src/assets/images/cat_plantas_tratamiento_1795720365590.jpg',
-    imageAlt: 'Vista aérea de planta de tratamiento de aguas residuales con clarificadores circulares',
+    imageAlt:
+      'Vista aérea de planta de tratamiento de aguas residuales con clarificadores circulares',
   },
   {
     id: 'productos-grp',
@@ -127,99 +49,15 @@ export const PRODUCT_CATEGORIES: ProductCategoryHighlight[] = [
   },
 ];
 
-export const HERO_METRICS: HeroMetric[] = [
-  {
-    value: '+180',
-    label: 'Proyectos ejecutados',
-    detail: 'Trayectoria continua desde 1998',
-  },
-  {
-    value: '420 m³/s',
-    label: 'Caudal total diseñado',
-    detail: 'En redes, canales y presas',
-  },
-  {
-    value: '99.4 %',
-    label: 'Continuidad operativa',
-    detail: 'Promedio en estaciones activas',
-  },
-  {
-    value: 'ISO 9001',
-    label: 'Gestión de calidad',
-    detail: 'Auditoría técnica en cada fase',
-  },
+export const PRODUCT_FILTERS = [
+  { id: 'todos', label: 'Todos' },
+  { id: 'bombeo', label: 'Bombeo y Presión' },
+  { id: 'valvulas', label: 'Válvulas y Control' },
+  { id: 'tratamiento', label: 'Tratamiento y Filtración' },
+  { id: 'telemetria', label: 'Medición y Telemetría' },
 ];
 
-export const SERVICES: HydraulicService[] = [
-  {
-    id: 'redes-abastecimiento',
-    index: '01.',
-    category: 'abastecimiento',
-    categoryLabel: 'Abastecimiento',
-    title: 'Redes de Abastecimiento y Distribución',
-    summary:
-      'Diseño, sectorización y modelamiento hidráulico avanzado para maximizar la cobertura y reducir pérdidas físicas de agua potable en entornos urbanos e industriales.',
-    featured: true,
-    deliverables: [
-      'Modelación hidráulica en régimen permanente y transitorio',
-      'Sectorización inteligente y control de presiones',
-      'Balances hídricos y planes de reducción de agua no contabilizada',
-    ],
-    norms: 'Norma OS.050 / AWWA M32',
-    typicalCapacity: '150 L/s – 8,500 L/s',
-  },
-  {
-    id: 'drenaje-pluvial',
-    index: '02.',
-    category: 'drenaje',
-    categoryLabel: 'Drenaje',
-    title: 'Drenaje Pluvial y Control de Inundaciones',
-    summary:
-      'Estudios hidrológicos y modelación bidimensional de escorrentía para proteger zonas urbanas e infraestructura crítica frente a eventos extremos.',
-    deliverables: [
-      'Mapas de peligro hidráulico (T = 25, 50 y 100 años)',
-      'Sistemas Urbanos de Drenaje Sostenible (SUDS)',
-      'Colectores troncales y lagunas de laminación',
-    ],
-    norms: 'Norma OS.060 / HEC-RAS 2D',
-    typicalCapacity: '12 m³/s – 340 m³/s',
-  },
-  {
-    id: 'estaciones-bombeo',
-    index: '03.',
-    category: 'abastecimiento',
-    categoryLabel: 'Abastecimiento',
-    title: 'Estaciones de Bombeo y Plantas de Tratamiento',
-    summary:
-      'Ingeniería hidráulica y electromecánica de alta eficiencia energética, integrando protección contra golpe de ariete y automatización operativa.',
-    deliverables: [
-      'Selección de equipos de bombeo y curvas de eficiencia',
-      'Análisis de transientes hidráulicos y válvulas anticipadoras',
-      'Diseño hidráulico de PTAP y PTAR compactas o convencionales',
-    ],
-    norms: 'Hydraulic Institute HI 9.6 / OS.020',
-    typicalCapacity: '80 L/s – 4,200 L/s',
-  },
-  {
-    id: 'obras-fluviales',
-    index: '04.',
-    category: 'estructuras',
-    categoryLabel: 'Estructuras',
-    title: 'Obras Fluviales, Presas y Defensas Ribereñas',
-    summary:
-      'Diseño estructural e hidráulico de bocatomas, vertederos de excedencias y estabilización de cauces mediante soluciones mixtas y bioingeniería.',
-    featured: true,
-    deliverables: [
-      'Estudios de socavación general y local en pilares y estribos',
-      'Diseño de disipadores de energía, presas derivadoras y aliviaderos',
-      'Defensas ribereñas con enrocado, gaviones y cobertura vegetal',
-    ],
-    norms: 'USBR Design of Small Dams / ICOLD',
-    typicalCapacity: '45 m³/s – 1,900 m³/s',
-  },
-];
-
-export const PRODUCTS: HydraulicProduct[] = [
+export const PRODUCTS = [
   {
     id: 'grupos-bombeo',
     code: 'ICA-BP-400',
@@ -348,7 +186,14 @@ export const PRODUCTS: HydraulicProduct[] = [
   },
 ];
 
-export const PROJECTS: HydraulicProject[] = [
+export const SERVICES = [
+  { id: 'redes-abastecimiento', title: 'Redes de Abastecimiento y Distribución' },
+  { id: 'drenaje-pluvial', title: 'Drenaje Pluvial y Control de Inundaciones' },
+  { id: 'estaciones-bombeo', title: 'Estaciones de Bombeo y Plantas de Tratamiento' },
+  { id: 'obras-fluviales', title: 'Obras Fluviales, Presas y Defensas Ribereñas' },
+];
+
+export const PROJECTS = [
   {
     id: 'estacion-el-mirador',
     title: 'Estación de Bombeo y Conducción El Mirador',
@@ -451,65 +296,21 @@ export const PROJECTS: HydraulicProject[] = [
   },
 ];
 
-export const METHODOLOGY_STEPS: MethodologyStep[] = [
+export const SECTORS = [
   {
-    index: '01.',
-    title: 'Diagnóstico e Hidrometría',
-    description:
-      'Levantamiento topográfico LiDAR, batimetría de precisión, análisis hidrológico de cuenca y evaluación en campo de la infraestructura existente.',
-    output: 'Línea base verificada',
+    sector: 'Municipalidades y EPS',
+    focus: 'Redes de agua potable, sectorización hidrométrica y estaciones de bombeo.',
   },
   {
-    index: '02.',
-    title: 'Modelación Numérica',
-    description:
-      'Simulación hidráulica 1D/2D y análisis de transientes para validar alternativas técnicas y optimizar costos de inversión y operación.',
-    output: 'Modelo calibrado',
+    sector: 'Agroindustria y Riego',
+    focus: 'Bocatomas, reservorios reguladores, filtración automática y conducción presurizada.',
   },
   {
-    index: '03.',
-    title: 'Ingeniería de Detalle',
-    description:
-      'Elaboración de planos constructivos, especificaciones técnicas, metrados, análisis de impacto ambiental y acompañamiento en obra.',
-    output: 'Expediente ejecutivo',
-  },
-];
-
-export const COMPANY_PILLARS: CompanyPillar[] = [
-  {
-    index: '01.',
-    title: 'Rigor Hidráulico Verificable',
-    description:
-      'Cada diseño se sustenta en mediciones de campo calibradas y simulaciones numéricas auditables bajo estándares internacionales AWWA, USBR e ISO.',
+    sector: 'Energía y Minería',
+    focus: 'Manejo de aguas de contacto, presas de regulación y líneas de impulsión de alta presión.',
   },
   {
-    index: '02.',
-    title: 'Eficiencia Energética y Operativa',
-    description:
-      'Optimizamos diámetros, curvas de bombeo y control de presiones para reducir el costo energético a lo largo de toda la vida útil del activo.',
-  },
-  {
-    index: '03.',
-    title: 'Equilibrio con el Entorno Hídrico',
-    description:
-      'Integramos caudales ecológicos, sistemas urbanos de drenaje sostenible y bioingeniería fluvial para proteger las cuencas que intervenimos.',
-  },
-];
-
-export const CERTIFICATIONS = [
-  {
-    code: 'ISO 9001:2015',
-    title: 'Gestión de Calidad en Ingeniería',
-    detail: 'Trazabilidad documental y revisión independiente de memorias de cálculo.',
-  },
-  {
-    code: 'ISO 14001:2015',
-    title: 'Gestión Ambiental Hídrica',
-    detail: 'Evaluación sistemática de huella hídrica y protección de cauces naturales.',
-  },
-  {
-    code: 'ISO 45001',
-    title: 'Seguridad en Obras y Supervisión',
-    detail: 'Protocolos de prevención de riesgos en inspecciones de campo y plantas.',
+    sector: 'Infraestructura Vial y Urbana',
+    focus: 'Estudios de socavación, drenaje longitudinal, alcantarillas y defensas ribereñas.',
   },
 ];
