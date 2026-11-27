@@ -1,0 +1,6 @@
+{
+  "name": "ICA Ingeniería Hidráulica",
+  "description": "Consultoría, diseño y ejecución de proyectos de ingeniería hidráulica, gestión hídrica e infraestructura sostenible.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
