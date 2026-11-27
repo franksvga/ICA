@@ -134,7 +134,7 @@ const PROJECTS = [
     location: 'Zona Norte',
     year: '2025',
     category: 'Abastecimiento',
-    imageSrc: '/assets/images/project_pumping_station_1795692102512.jpg',
+    imageSrc: './public/assets/images/project_pumping_station_1795692102512.jpg',
     imageAlt:
       'Interior de estación de bombeo municipal con tuberías de acero inoxidable y válvulas hidráulicas azules',
     summary:
@@ -157,7 +157,7 @@ const PROJECTS = [
     location: 'Valle Central',
     year: '2024',
     category: 'Drenaje',
-    imageSrc: '/assets/images/project_urban_drainage_1795692104686.jpg',
+    imageSrc: './public/assets/images/project_urban_drainage_1795692104686.jpg',
     imageAlt:
       'Canal de drenaje pluvial urbano con arquitectura de concreto y áreas verdes de retención sostenible',
     summary:
@@ -180,7 +180,7 @@ const PROJECTS = [
     location: 'Cuenca Baja',
     year: '2023',
     category: 'Estructuras',
-    imageSrc: '/assets/images/project_river_defense_1795692104149.jpg',
+    imageSrc: './public/assets/images/project_river_defense_1795692104149.jpg',
     imageAlt:
       'Vista aérea de cauce fluvial estabilizado con terrazas de enrocado y vegetación de bioingeniería',
     summary:
@@ -203,7 +203,7 @@ const PROJECTS = [
     location: 'Cuenca Alta',
     year: '2024',
     category: 'Estructuras',
-    imageSrc: '/assets/images/hero_hydraulic_dam_1795692102080.jpg',
+    imageSrc: './public/assets/images/hero_hydraulic_dam_1795692102080.jpg',
     imageAlt:
       'Presa de concreto con vertedero de excedencias y disipador de energía en río de montaña',
     summary:
